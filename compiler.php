@@ -16,6 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $context  = stream_context_create($options);
     $response = file_get_contents($url, false, $context);
-    echo $response;
+    http_response_code(200);
+	die(json_encode($response));
+    //echo $response;
+}
+else {
+    http_response_code(400);
+	die(json_encode("GET method is not allowed"));
+    //echo "GET method is not allowed";
 }
 ?>
